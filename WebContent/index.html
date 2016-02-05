@@ -63,54 +63,81 @@
 
       <h3>Dispositifs</h3>
       <p>Les colonnes ci-dessous détaillent les opérations au sein de chaque dispositif.</p>
-        <div class="col-md-4 center-block">
-        	<img src="ressources/card.png" class="img-responsive"/>
-        	<h4>Carte</h4>
-        	<ul class="carte_list">
-        		<li>Approcher Carte</li>
-        		<li>Terminal détecté</li>
-        		<li>"Bonjour"</li>
-        		<li>Vérification du PIN [FEC00A4C]</li>
-        		<li>Pin Correct !</li>
-        		<li>Demande d'autorisation requise (ARQC)</li>
-        		<li>Transaction acceptée</li>
-        	</ul>
-        </div>
-        <div class="col-md-4 center-block">
-        	<img src="ressources/tpe.jpg" class="img-responsive"/>
-        	<h4>Terminal de Paiement Electronique</h4>
-	        	<ul class="tpe_list">
-	        		<li>Démarrage de la transaction</li>
-	        		<li>Saisie du montant</li>
-	        		<li>En attente d'une carte..</li>
-	        		<li>Carte detectée</li>
-	        		<li>Saisie du code PIN..</li>
-	        		<li>Envoi du PIN Chiffré à la carte [FEC00A4C]</li>
-	        		<li>Demande d'autorisation vers la banque..</li>
-	        		<li>Réception de la réponse de la banque</li>
-	        		<li>Transmission de la réponse à la carte</li>
-	        		<li>Transaction acceptée</li>
+      	<div class="row row-eq-height">
+	        <div class="col-md-4">
+	        	<img src="ressources/card.png" class="img-responsive center-block" width=200px/>
+	        	<h4>Carte</h4>
+	        	<ul class="carte_list">
+	        		<li id="6">Approcher Carte</li>
+	        		<li id="7">Terminal détecté</li>
+	        		<li id="9">"Bonjour"</li>
+	        		<li id="15">Vérification du PIN [FEC00A4C]</li>
+	        		<li id="16">Pin Correct !</li>
+	        		<li id="17">Demande d'autorisation requise (ARQC)</li>
+	        		<li id="25">Transaction acceptée</li>
 	        	</ul>
-        </div>
-        <div class="col-md-4 center-block">
-            <img src="ressources/server.jpg" class="img-responsive"/>
-        	<h4>Déroulement des opérations</h4>
-        		<ul class="tpe_list">
-	        		<li>Démarrage de la séquence</li>
-	        		<li>Début de la transaction</li>
-	        		<li>Saisie du code PIN [01020304]</li>
-	        		<li>Chiffrement du PIN par le TPE [FEC00A4C]</li>
-	        		<li>Envoi du PIN à la Carte</li>
-	        		<li>Demande d'autorisation émise par la carte</li>
-	        		<li>Demande d'autorisation émise vers la banque..</li>
-	        		<li>Réception de la réponse de la banque par le TPE</li>
-	        		<li>Transmission de la réponse à la carte</li>
-	        		<li>Transaction acceptée</li>
-	        	</ul>
-        </div>
+	        </div>
+	        <div class="col-md-4">
+	        	<img src="ressources/tpe.jpg" class="img-responsive center-block" width=200px/>
+	        	<h4>Terminal de Paiement Electronique</h4>
+		        	<ul class="tpe_list">
+		        		<li id="2">Démarrage de la transaction</li>
+		        		<li id="4">Saisie du montant</li>
+		        		<li id="5">En attente d'une carte..</li>
+		        		<li id="8">Carte detectée</li>
+		        		<li id="10">Saisie du code PIN..</li>
+		        		<li id="13">Envoi du PIN Chiffré à la carte [FEC00A4C]</li>
+		        		<li id="19">Demande d'autorisation vers la banque..</li>
+		        		<li id="21">Réception de la réponse de la banque</li>
+		        		<li id="23">Transmission de la réponse à la carte</li>
+		        		<li id="26">Transaction acceptée</li>
+		        	</ul>
+	        </div>
+	        <div class="col-md-4">
+	            <img src="ressources/server.jpg" class="img-responsive center-block" width=200px/>
+	        	<h4>Déroulement des opérations</h4>
+	        		<ul class="tpe_list">
+		        		<li id="1">Démarrage de la séquence</li>
+		        		<li id="3">Début de la transaction</li>
+		        		<li id="11">Saisie du code PIN [01020304]</li>
+		        		<li id="12">Chiffrement du PIN par le TPE [FEC00A4C]</li>
+		        		<li id="14">Envoi du PIN à la Carte</li>
+		        		<li id="18">Demande d'autorisation émise par la carte</li>
+		        		<li id="20">Demande d'autorisation émise vers la banque..</li>
+		        		<li id="22">Réception de la réponse de la banque par le TPE</li>
+		        		<li id="24">Transmission de la réponse à la carte</li>
+		        		<li id="27">Transaction acceptée</li>
+		        	</ul>
+	        </div>
+	      </div>
       </div>
 
     </div> <!-- /container -->
+
+<script>
+function getElementsById(ids) {
+    var idList = ids.split(" ");
+    var results = [], item;
+    for (var i = 0; i < idList.length; i++) {
+        item = document.getElementById(idList[i]);
+        if (item) {
+            results.push(item);
+        }
+    }
+    return(results);
+}
+
+$( document ).ready(function() {
+	
+	
+	
+	$.each(getElementsById("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27"),function(fadeInDiv) {
+	     $(this).delay(fadeInDiv * 1000).fadeIn();
+	   });
+	
+});
+
+</script>
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
