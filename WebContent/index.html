@@ -47,17 +47,13 @@
       		
 
 <div class="progress">
-  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 10%">
-    <span class="sr-only">35% Complete (success)</span>
+  <div id="RedBar" class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 0%">
   </div>
-  <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 30%">
-    <span class="sr-only">20% Complete (warning)</span>
+  <div id="OrangeBar" class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 0%">
   </div>
-  <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 30%">
-    <span class="sr-only">10% Complete (danger)</span>
+  <div id="BlueBar" class="progress-bar progress-bar-info progress-bar-striped active" style="width: 0%">
   </div>
-  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 20%">
-    <span class="sr-only">10% Complete (danger)</span>
+  <div id="GreenBar" class="progress-bar progress-bar-success progress-bar-striped active" style="width: 0%">
   </div>
 </div>
 
@@ -127,12 +123,18 @@ function getElementsById(ids) {
     return(results);
 }
 
+function indexToWidth(index) {
+		console.log(index * 4 + '%');
+	  return index * 4 + '%';
+}
+
 $( document ).ready(function() {
-	
-	
-	
+
 	$.each(getElementsById("1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27"),function(fadeInDiv) {
-	     $(this).delay(fadeInDiv * 1000).fadeIn();
+	     $(this).delay(fadeInDiv * 1000).fadeIn().promise().done( function() {
+	    	$('#BlueBar').css("width", indexToWidth(fadeInDiv));
+
+	     } );
 	   });
 	
 });
