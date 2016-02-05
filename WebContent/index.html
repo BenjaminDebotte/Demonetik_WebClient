@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Le Conseil">
+    <link rel="icon" href="../../favicon.ico">
+    <script type="text/javascript" src="jquery-2.2.0.min.js"></script>
+
+    <title>Démonétik'</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+
+
+  <body>
+    <div class="container">
+	    	<div class="page-header">
+	    	<div style="float: right;">
+	    		<img src="ressources/ensi.png" class="img-responsive"/>
+	     	</div>
+		        <h1>Démonstration de Monétique</h1>
+		        <p class="lead">Réalisation d'une transaction monétique sécurisée sans-contact</p>
+      		</div>
+	    	
+      		
+
+<div class="progress">
+  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 10%">
+    <span class="sr-only">35% Complete (success)</span>
+  </div>
+  <div class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 30%">
+    <span class="sr-only">20% Complete (warning)</span>
+  </div>
+  <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 30%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+  <div class="progress-bar progress-bar-success progress-bar-striped active" style="width: 20%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+</div>
+
+      <h3>Dispositifs</h3>
+      <p>Les colonnes ci-dessous détaillent les opérations au sein de chaque dispositif.</p>
+        <div class="col-md-4 center-block">
+        	<img src="ressources/card.png" class="img-responsive"/>
+        	<h4>Carte</h4>
+        	<ul class="carte_list">
+        		<li>Approcher Carte</li>
+        		<li>Terminal détecté</li>
+        		<li>"Bonjour"</li>
+        		<li>Vérification du PIN [FEC00A4C]</li>
+        		<li>Pin Correct !</li>
+        		<li>Demande d'autorisation requise (ARQC)</li>
+        		<li>Transaction acceptée</li>
+        	</ul>
+        </div>
+        <div class="col-md-4 center-block">
+        	<img src="ressources/tpe.jpg" class="img-responsive"/>
+        	<h4>Terminal de Paiement Electronique</h4>
+	        	<ul class="tpe_list">
+	        		<li>Démarrage de la transaction</li>
+	        		<li>Saisie du montant</li>
+	        		<li>En attente d'une carte..</li>
+	        		<li>Carte detectée</li>
+	        		<li>Saisie du code PIN..</li>
+	        		<li>Envoi du PIN Chiffré à la carte [FEC00A4C]</li>
+	        		<li>Demande d'autorisation vers la banque..</li>
+	        		<li>Réception de la réponse de la banque</li>
+	        		<li>Transmission de la réponse à la carte</li>
+	        		<li>Transaction acceptée</li>
+	        	</ul>
+        </div>
+        <div class="col-md-4 center-block">
+            <img src="ressources/server.jpg" class="img-responsive"/>
+        	<h4>Déroulement des opérations</h4>
+        		<ul class="tpe_list">
+	        		<li>Démarrage de la séquence</li>
+	        		<li>Début de la transaction</li>
+	        		<li>Saisie du code PIN [01020304]</li>
+	        		<li>Chiffrement du PIN par le TPE [FEC00A4C]</li>
+	        		<li>Envoi du PIN à la Carte</li>
+	        		<li>Demande d'autorisation émise par la carte</li>
+	        		<li>Demande d'autorisation émise vers la banque..</li>
+	        		<li>Réception de la réponse de la banque par le TPE</li>
+	        		<li>Transmission de la réponse à la carte</li>
+	        		<li>Transaction acceptée</li>
+	        	</ul>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
