@@ -1,7 +1,7 @@
 h4 {
   margin-top: 25px;
-      font-weight: bold;
-  
+  font-weight: bold;
+  text-align: center;
 }
 
 .row-eq-height {
@@ -12,7 +12,6 @@ h4 {
 }
 
 li {
-	display: none;
 }
 
 .row {
