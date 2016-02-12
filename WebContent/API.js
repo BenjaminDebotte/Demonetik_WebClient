@@ -4,6 +4,12 @@ function indexToWidth(index) {
 }
 
 
+function reinitialiser() {
+	$('.carte_list').text("");
+	$('.tpe_list').text("");
+	$('.banque_list').text("");
+}
+
 var socket = new WebSocket("ws://192.168.43.233:8080/DemonetikWebService/websocketdemonetik");
 
 socket.onmessage = function(event){
@@ -12,13 +18,10 @@ socket.onmessage = function(event){
 	var msg = JSON.parse(event.data);
 	console.log(msg);  
 	  
-	if(msg.numEtat == "1") {
-		$('.carte_list').text("");
-		$('.tpe_list').text("");
-		$('.banque_list').text("");
+	/* Réinitialisation */
+	if(msg.numEtat == "0") {
+		reinitialiser();
 	}
-	
-	
 	
 	
 	  switch(msg.type) {
