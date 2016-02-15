@@ -19,20 +19,20 @@ socket.onmessage = function(event){
 	console.log(msg);  
 	  
 	/* Réinitialisation */
-	if(msg.numEtat == "0") {
+	if(msg.etat.numEtat == "0") {
 		reinitialiser();
 	}
 	
 	
-	  switch(msg.type) {
+	  switch(msg.etat.type) {
 	    case "Carte":
-	  	  $('.carte_list').append("<li>" + msg.libelle + "</li>\n");
+	  	  $('.carte_list').append("<li>" + msg.etat.labelEtat + "</li>\n");
 	      break;
 	    case "TPE":
-	  	  $('.tpe_list').append("<li>" + msg.libelle + "</li>\n");
+	  	  $('.tpe_list').append("<li>" + msg.etat.labelEtat + "</li>\n");
 	      break;
 	    case "Banque":
-	  	  $('.banque_list').append("<li>" + msg.libelle + "</li>\n");
+	  	  $('.banque_list').append("<li>" + msg.etat.labelEtat + "</li>\n");
 	      break;
 	  }
 	  
@@ -45,13 +45,15 @@ socket.onmessage = function(event){
 
 socket.onopen = function(event) {
 	console.log("Connecté à la socket");
-	//socket.send("Bonjour !");
 };
 
 socket.onclose = function(event) {
 	console.log("Fermeture de la socket.");
 }
 
+socket.onerror = function(event) {
+	$('.container').append("<div class=\"alert alert-danger\" role=\"alert\">Une erreur est survenue avec la WebSocket.</div>");
+}
 
 
 
