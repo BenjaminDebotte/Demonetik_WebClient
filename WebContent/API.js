@@ -38,7 +38,7 @@ socket.onmessage = function(event){
 	  
 	  
 	  //Mise à jour de la barre de chargement
-  		$('#BlueBar').css("width", indexToWidth(parseInt(msg.numEtat) * 20));
+  		$('#BlueBar').css("width", indexToWidth(parseInt(msg.etat.numEtat) * (100 / 8)));
 
 	 
 };
