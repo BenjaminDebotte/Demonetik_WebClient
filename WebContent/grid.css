@@ -4,6 +4,12 @@ h4 {
   text-align: center;
 }
 
+h5 {
+  text-align: left;
+  font-size : 18px;
+}
+
+
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
