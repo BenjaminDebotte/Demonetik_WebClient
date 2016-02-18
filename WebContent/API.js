@@ -1,3 +1,27 @@
+/* ################################################################################################# */
+/* ######################## C O N F I G U R A T I O N ############################################## */
+/* ################################################################################################# */
+
+
+var config = {};
+
+config.webservice = {};
+config.webservice.ip = "192.168.43.233"; //Modifier l'IP du WebService
+config.webservice.port = 8080;	
+config.webservice.name = "DemonetikWebService";
+
+config.websocket = {};
+config.websocket.name = "websocketdemonetik";
+config.websocket.address = "ws://" + config.webservice.ip + ":" + config.webservice.port +
+							"/" + config.webservice.name + "/" + config.websocket.name;
+
+
+/* ################################################################################################# */
+/* ################################################################################################# */
+/* ################################################################################################# */
+/* ################################################################################################# */
+
+
 function indexToWidth(index) {
 		//console.log(index * 4 + '%');
 	  return index + '%';
@@ -8,13 +32,18 @@ function decode_utf8(s) {
   return decodeURIComponent(escape(s));
 }
 
+function includeJS(incFile)
+{
+   document.write('<script type="text/javascript" src="'+ incFile+ '"></script>');
+}
+
 function reinitialiser() {
 	$('.carte_list').text("");
 	$('.tpe_list').text("");
 	$('.banque_list').text("");
 }
 
-var socket = new WebSocket("ws://192.168.43.233:8080/DemonetikWebService/websocketdemonetik");
+var socket = new WebSocket(config.websocket.address);
 
 socket.onmessage = function(event){
 	  
