@@ -6,15 +6,24 @@
 var config = {};
 
 config.webservice = {};
-config.webservice.ip = "192.168.43.233"; //Modifier l'IP du WebService
-config.webservice.port = 8080;	
-config.webservice.name = "DemonetikWebService";
-
 config.websocket = {};
-config.websocket.name = "websocketdemonetik";
+config.scenario = {};
+
+
+
+//Configuration autour du scénario
+config.scenario.step_count = 7;						//Nombres d'étapes dans la cinématique
+
+//Configuration du WebServices
+config.webservice.ip = "192.168.43.233"; 			//IP du WebService
+config.webservice.port = 8080;						//Port du WebService
+config.webservice.name = "DemonetikWebService";		//Nom du WebService
+
+//Configuration de la WebSocket
+config.websocket.name = "websocketdemonetik";		//Nom de la socket
 config.websocket.address = "ws://" + config.webservice.ip + ":" + config.webservice.port +
 							"/" + config.webservice.name + "/" + config.websocket.name;
-
+config.websocket.alertTimeOut = 3500;				//Timeout des alertes
 
 /* ################################################################################################# */
 /* ################################################################################################# */
@@ -41,9 +50,14 @@ function reinitialiser() {
 	$('.carte_list').text("");
 	$('.tpe_list').text("");
 	$('.banque_list').text("");
+	
+	$('#BlueBar').css("width", indexToWidth(0));
+	$('#GreenBar').css("width", indexToWidth(0));
+	$('#RedBar').css("width", indexToWidth(0));
 }
 
 var socket = new WebSocket(config.websocket.address);
+$('.footer').append("<div class=\"col-md-6 col-md-offset-3 alert alert-info \" role=\"alert\">Connexion à la socket " + config.websocket.address + " .</div>");
 
 socket.onmessage = function(event){
 	  
@@ -84,7 +98,7 @@ socket.onmessage = function(event){
 	/* Gestion des propriétés ponctuelles */
 	
 	if(msg.hasOwnProperty("montant")) {
-		content += "<p class=\"list-group-item-text\"> Montant reçu : " + msg.montant + "</p>";
+		content += "<p class=\"list-group-item-text\"> Montant reçu : " + msg.montant + "€</p>";
 	}
 	
 	if(msg.hasOwnProperty("porteurTransaction")) {
@@ -94,7 +108,9 @@ socket.onmessage = function(event){
 	}
 	
 	if(msg.hasOwnProperty("pin")) {
-		content += "<p class=\"list-group-item-text\"> PIN : " + msg.pin + "</p>";
+		var enciphered_pin = (Math.abs(msg.pin)).toString(16).toUpperCase();
+		while(enciphered_pin.length < 8 ) enciphered_pin = "0" + enciphered_pin;
+		content += "<p class=\"list-group-item-text\"> PIN Chiffré : [" + enciphered_pin + "]</p>";
 	}
 	
 	if(msg.hasOwnProperty("resultat")) {
@@ -106,23 +122,37 @@ socket.onmessage = function(event){
 
 	  
 	//Mise à jour de la barre de chargement
-	$('#BlueBar').css("width", indexToWidth(parseInt(msg.numEtat) * (100 / 7)));
+	var percent = parseInt(msg.numEtat) * (100 / config.scenario.step_count);
+	if(percent < 100){
+		$('#BlueBar').css("width", indexToWidth(percent));
+	} else {
+		$('#BlueBar').css("width", indexToWidth(0));
+		$('#GreenBar').css("width", indexToWidth(100));
+	}
 
-	 
 	$(columnClass).append(content);
 	
 };
 
+function clearAlerts() {
+	$('.footer').html("");
+}
+
 socket.onopen = function(event) {
 	console.log("Connecté à la socket");
+	$('.footer').append("<div class=\"col-md-6 col-md-offset-3 alert alert-success \" role=\"alert\">Connexion à la socket réussie.</div>");
+	window.setTimeout(clearAlerts,config.websocket.alertTimeOut);
 };
 
 socket.onclose = function(event) {
 	console.log("Fermeture de la socket.");
+	$('.footer').append("<div class=\"col-md-6 col-md-offset-3 alert alert-info \" role=\"alert\">Fermeture de la socket.</div>");
+	window.setTimeout(clearAlerts,config.websocket.alertTimeOut);
 }
 
 socket.onerror = function(event) {
-	$('.container').append("<div class=\"alert alert-danger\" role=\"alert\">Une erreur est survenue avec la WebSocket.</div>");
+	$('.footer').append("<div class=\"col-md-6 col-md-offset-3 alert alert-danger\" role=\"alert\">Une erreur est survenue lors de la connexion avec la WebSocket.</div>");
+	window.setTimeout(clearAlerts,config.websocket.alertTimeOut);
 }
 
 
